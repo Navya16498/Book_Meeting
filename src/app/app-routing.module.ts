@@ -7,7 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 const routes: Routes = [
   { path: 'book', component: BookingFormComponent },
   { path: 'dash', component: DashboardComponent },
-  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/dash', pathMatch: 'full' },
 ];
 
 @NgModule({

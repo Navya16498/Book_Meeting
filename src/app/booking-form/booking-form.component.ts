@@ -27,6 +27,7 @@ export class BookingFormComponent {
   startTime!: number;
   endTime!: number;
   Agenda!: string;
+  selectedDetails1: Meeting[] = [];
   BookRoom() {
     debugger;
     if (
@@ -92,8 +93,7 @@ export class BookingFormComponent {
     this.room = id;
   }
   deleteAmeeting(id: number) {
-    debugger;
-    this.selectedDetails = this.MeetingServiceService1.deleteMeetingById(id);
-    //this.onRoomSelect(this.selectedroomId)
+    this.selectedDetails1 = this.MeetingServiceService1.deleteMeetingById(id);
+    this.onRoomSelect(this.selectedroomId);
   }
 }
