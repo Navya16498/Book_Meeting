@@ -2,19 +2,39 @@
   <button (click)="BookRoom()">Book a Meeting</button>
 </div> -->
 
-<div (ngSubmit)="BookRoom()">
-  <h2>Book A Meeting Room</h2>
-  <label>User Name</label>
-  <input type="text" [(ngModel)]="name" />
-  <label>Meeting Room</label>
-  <input type="text" [(ngModel)]="room" />
-  <label>Date</label>
-  <input type="text" [(ngModel)]="date" />
-  <label>Start Time</label>
-  <input type="text" [(ngModel)]="startTime" />
-  <label>End Time</label>
-  <input type="text" [(ngModel)]="endTime" />
-  <label>Agenda</label>
-  <input type="text" [(ngModel)]="Agenda" />
-  <button type="submit">Book Meeting</button>
+<div class="meeting-form">
+  <form (ngSubmit)="BookRoom()">
+    <h2>Book A Meeting Room</h2>
+    <div>
+      <label>User Name</label>
+      <input type="text" [(ngModel)]="name" name="name" required /><br />
+    </div>
+    <div>
+      <label>Meeting Room</label>
+      <input type="text" [(ngModel)]="room" name="room" required /><br />
+    </div>
+    <div>
+      <label>Date</label>
+      <input type="text" [(ngModel)]="date" name="date" required /><br />
+    </div>
+    <div>
+      <label>Start Time</label>
+      <input
+        type="text"
+        [(ngModel)]="startTime"
+        name="startTime"
+        required
+      /><br />
+    </div>
+    <div>
+      <label>End Time</label>
+      <input type="text" [(ngModel)]="endTime" name="endTime" required /><br />
+    </div>
+    <div>
+      <label>Agenda</label>
+      <input type="text" [(ngModel)]="Agenda" name="Agenda" required /><br />
+    </div>
+
+    <button type="submit">Book Meeting</button>
+  </form>
 </div>

@@ -6,3 +6,9 @@ export interface Meeting {
   startTime: number;
   endTime: number;
 }
+
+export interface Room {
+  id: number;
+  name: string;
+  status: 'Available' | 'In-Use' | 'Booked';
+}

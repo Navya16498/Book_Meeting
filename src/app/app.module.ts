@@ -5,10 +5,17 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BookingFormComponent } from './booking-form/booking-form.component';
 import { MeetingListComponent } from './meeting-list/meeting-list.component';
+import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, BookingFormComponent, MeetingListComponent],
-  imports: [BrowserModule, FormsModule],
+  declarations: [
+    AppComponent,
+    BookingFormComponent,
+    MeetingListComponent,
+    DashboardComponent,
+  ],
+  imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
