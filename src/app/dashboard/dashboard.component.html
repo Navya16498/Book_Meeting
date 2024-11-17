@@ -1,2 +1,18 @@
-<button routerLink="/book">Book a Meeting</button> <br />
-<button routerLink="/list">List all Avaiable Rooms</button>
+<div class="content_middle">
+  <h2>Book a Meeting Room</h2>
+  <form (ngSubmit)="login()">
+    <div>
+      <label>User Name</label>
+      <input type="text" name="name" [(ngModel)]="name" required />
+    </div>
+    <div>
+      <label>Password</label>
+      <input type="text" name="password" [(ngModel)]="password" required />
+    </div>
+    <div>
+      <button class="login_btn" type="submit">Login</button>
+    </div>
+    <p>User Name: Any User Name</p>
+    <p>Password: Any Password</p>
+  </form>
+</div>

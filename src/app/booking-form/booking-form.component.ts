@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { MeetingServiceService } from '../meeting-service.service';
+import { RoomService } from '../room.service';
+import { Meeting, Room } from '../meeting-interface';
 
 @Component({
   selector: 'app-booking-form',
@@ -7,7 +9,18 @@ import { MeetingServiceService } from '../meeting-service.service';
   styleUrl: './booking-form.component.css',
 })
 export class BookingFormComponent {
-  constructor(private MeetingServiceService1: MeetingServiceService) {}
+  @ViewChild('ModalToggle') ModalToggle: ElementRef | undefined;
+  Rooms: Room[] = [];
+  selectedItemId: number = 0;
+  selectedDetails: Meeting[] = [];
+  selectedroomId!: number;
+  constructor(
+    private MeetingServiceService1: MeetingServiceService,
+    private RoomService1: RoomService
+  ) {}
+  ngOnInit() {
+    this.getRooms();
+  }
   name!: string;
   room!: string;
   date!: number;
@@ -40,5 +53,47 @@ export class BookingFormComponent {
       this.endTime = 0;
       this.Agenda = '';
     }
+    const modal = this.ModalToggle?.nativeElement;
+    if (modal.style.display == 'block') {
+      modal.style.display = 'none';
+    }
+  }
+
+  getRooms() {
+    this.Rooms = this.RoomService1.getRooms();
+  }
+  toggleModal() {
+    const modal = this.ModalToggle?.nativeElement;
+    if (modal.style.display === 'none' || modal.style.display === '') {
+      modal.style.display = 'block';
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+  close() {
+    const modal = this.ModalToggle?.nativeElement;
+    if (modal.style.display == 'block') {
+      modal.style.display = 'none';
+    }
+  }
+  onRoomSelect(selectedItemId: number) {
+    debugger;
+    const selectedRoom = this.Rooms.find(
+      (room) => room.id === Number(selectedItemId)
+    );
+    if (selectedRoom) {
+      const roomName = selectedRoom.name;
+      this.selectedroomId = selectedRoom.id;
+      this.selectedDetails =
+        this.MeetingServiceService1.getMeetingsById(roomName) ?? []; // Fetch meetings by room name
+    }
+  }
+  onchangeRoom(id: any) {
+    this.room = id;
+  }
+  deleteAmeeting(id: number) {
+    debugger;
+    this.selectedDetails = this.MeetingServiceService1.deleteMeetingById(id);
+    //this.onRoomSelect(this.selectedroomId)
   }
 }

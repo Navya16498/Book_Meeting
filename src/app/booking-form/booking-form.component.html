@@ -1,40 +1,154 @@
-<!-- <div>
-  <button (click)="BookRoom()">Book a Meeting</button>
-</div> -->
+<div class="main-content">
+  <div class="navbar">
+    <button (click)="toggleModal()">Book a Meeting</button>
+  </div>
+  <div class="section1">
+    <h4>Your upcoming Meeting Details:</h4>
+    <table>
+      <colgroup>
+        <col style="width: 15%" />
+        <col style="width: 15%" />
+        <col style="width: 15%" />
+        <col style="width: 15%" />
+        <col style="width: 15%" />
+        <col style="width: 15%" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Sr No</th>
+          <th>User Name</th>
+          <th>Agenda</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Room</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of selectedDetails">
+          <td>{{ item.id }}</td>
+          <td>{{ item.Username }}</td>
+          <td>{{ item.Agenda }}</td>
+          <td>{{ item.Date }}</td>
+          <td>{{ item.startTime }}</td>
+          <td>{{ item.MeetingRoom }}</td>
+          <button (click)="deleteAmeeting(item.id)">delete</button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="section2">
+    <h4>Room Meeting Details</h4>
+    <select
+      [(ngModel)]="selectedItemId"
+      class="select_class"
+      (change)="onRoomSelect(selectedItemId)"
+    >
+      <option [value]="0" disabled selected>Select Room</option>
+      <option *ngFor="let item of Rooms" [value]="item.id">
+        {{ item.name }}
+      </option>
+    </select>
+    <div>
+      <table>
+        <colgroup>
+          <col style="width: 15%" />
+          <col style="width: 15%" />
+          <col style="width: 15%" />
+          <col style="width: 15%" />
+          <col style="width: 15%" />
+          <col style="width: 15%" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Sr No</th>
+            <th>User Name</th>
+            <th>Agenda</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Room</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of selectedDetails">
+            <td>{{ item.id }}</td>
+            <td>{{ item.Username }}</td>
+            <td>{{ item.Agenda }}</td>
+            <td>{{ item.Date }}</td>
+            <td>{{ item.startTime }}</td>
+            <td>{{ item.MeetingRoom }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div
+  class="main-content modal"
+  id="ModalToggle"
+  #ModalToggle
+  style="display: none"
+>
+  <div class="modal-content">
+    <span class="close" (click)="close()">&times;</span>
+    <div>
+      <div class="meeting-form">
+        <form (ngSubmit)="BookRoom()">
+          <h2>Book A Meeting Room</h2>
+          <div>
+            <label>User Name</label>
+            <input type="text" [(ngModel)]="name" name="name" required /><br />
+          </div>
+          <div>
+            <label>Meeting Room</label>
+            <!-- <input type="text" [(ngModel)]="room" name="room" required /><br /> -->
+            <select
+              [(ngModel)]="room"
+              class="select_class"
+              (change)="onchangeRoom(room)"
+              name="room"
+            >
+              <!-- (change)="onchangeRoom(room)" -->
+              <option [value]="" disabled selected>Select Room</option>
+              <option *ngFor="let item of Rooms" [value]="item.name">
+                {{ item.name }}
+              </option>
+            </select>
+          </div>
+          <div>
+            <label>Date</label>
+            <input type="text" [(ngModel)]="date" name="date" required /><br />
+          </div>
+          <div>
+            <label>Start Time</label>
+            <input
+              type="text"
+              [(ngModel)]="startTime"
+              name="startTime"
+              required
+            /><br />
+          </div>
+          <div>
+            <label>End Time</label>
+            <input
+              type="text"
+              [(ngModel)]="endTime"
+              name="endTime"
+              required
+            /><br />
+          </div>
+          <div>
+            <label>Agenda</label>
+            <input
+              type="text"
+              [(ngModel)]="Agenda"
+              name="Agenda"
+              required
+            /><br />
+          </div>
 
-<div class="meeting-form">
-  <form (ngSubmit)="BookRoom()">
-    <h2>Book A Meeting Room</h2>
-    <div>
-      <label>User Name</label>
-      <input type="text" [(ngModel)]="name" name="name" required /><br />
+          <button type="submit" class="bookmeeting">Book Meeting</button>
+        </form>
+      </div>
     </div>
-    <div>
-      <label>Meeting Room</label>
-      <input type="text" [(ngModel)]="room" name="room" required /><br />
-    </div>
-    <div>
-      <label>Date</label>
-      <input type="text" [(ngModel)]="date" name="date" required /><br />
-    </div>
-    <div>
-      <label>Start Time</label>
-      <input
-        type="text"
-        [(ngModel)]="startTime"
-        name="startTime"
-        required
-      /><br />
-    </div>
-    <div>
-      <label>End Time</label>
-      <input type="text" [(ngModel)]="endTime" name="endTime" required /><br />
-    </div>
-    <div>
-      <label>Agenda</label>
-      <input type="text" [(ngModel)]="Agenda" name="Agenda" required /><br />
-    </div>
-
-    <button type="submit">Book Meeting</button>
-  </form>
+  </div>
 </div>

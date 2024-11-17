@@ -1,0 +1,31 @@
+.content_middle {
+  width: 80%;
+  margin: 8% auto;
+}
+.content_middle div {
+  display: flex;
+  margin: 15px;
+  justify-content: center;
+}
+.content_middle div label {
+  font-weight: 500;
+  width: 150px;
+  text-align: left;
+  margin-right: 15px;
+}
+.content_middle div input {
+  height: 18px;
+}
+.content_middle form {
+  width: 60%;
+  margin: 25px auto;
+}
+.login_btn {
+  background-color: rgb(75, 75, 232);
+  color: white;
+  padding: 12px;
+  margin: 15px;
+  height: 45px;
+  width: 78px;
+  border-radius: 5px;
+}
