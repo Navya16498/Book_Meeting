@@ -8,7 +8,6 @@ export class MeetingServiceService {
 
   constructor() {}
   ngOnInit() {
-    debugger;
     const localstg = localStorage.getItem('MeetingData');
     if (localstg != null) {
       this.MeetingRoom = JSON.parse(localstg);
@@ -16,7 +15,6 @@ export class MeetingServiceService {
   }
 
   bookMeeting(obj: any) {
-    debugger;
     const localstg = localStorage.getItem('MeetingData');
     let oldarr = [];
 
@@ -39,7 +37,7 @@ export class MeetingServiceService {
     // Add the new meeting object to the array
     oldarr.push(room_obj);
 
-    // Save the updated array back to localStorage
+    // Saved the updated array back to localStorage
     localStorage.setItem('MeetingData', JSON.stringify(oldarr));
 
     // Optionally, update the MeetingRoom array in the component
@@ -51,7 +49,6 @@ export class MeetingServiceService {
 
   //get all meeting for particular room BY NAME
   getMeetingsById(room: string) {
-    debugger;
     const localstg = localStorage.getItem('MeetingData');
     if (localstg !== null) {
       this.MeetingRoom = JSON.parse(localstg);

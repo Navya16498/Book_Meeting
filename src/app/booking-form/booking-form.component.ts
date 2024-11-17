@@ -78,7 +78,6 @@ export class BookingFormComponent {
     }
   }
   onRoomSelect(selectedItemId: number) {
-    debugger;
     const selectedRoom = this.Rooms.find(
       (room) => room.id === Number(selectedItemId)
     );
